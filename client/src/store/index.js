@@ -7,7 +7,7 @@ import weather from './weather/reducers';
 
 const rootReducer = combineReducers({weather});
 
-const middleware = [thunk, logger];
+const middleware = [logger];
 
 const enhancers = applyMiddleware(...middleware);
 

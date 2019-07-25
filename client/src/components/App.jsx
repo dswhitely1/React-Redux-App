@@ -3,14 +3,18 @@ import {Route} from 'react-router-dom';
 import {useSelector} from "react-redux";
 import {WeatherProvider} from "../contexts/WeatherContext";
 import WeatherContainer from "./weather/WeatherContainer";
+import {useActions} from "../store/weather/useActions";
 
 const App = () => {
     const [isLoading, setIsLoading] = useState('false');
-    const weather = useSelector(data => data.weather);
+    const weather = useSelector(state => state.weather);
+    const {fetchAlerts} = useActions();
 
     useEffect(() => {
         setIsLoading(weather.isLoading)
     }, [weather.isLoading]);
+
+    useEffect(() => fetchAlerts(), []);
 
     if (isLoading) {
         return <h1>Loading</h1>
