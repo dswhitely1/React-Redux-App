@@ -4,8 +4,18 @@ import {useSelector} from "react-redux";
 import {WeatherProvider} from "../contexts/WeatherContext";
 import WeatherContainer from "./weather/WeatherContainer";
 import {useActions} from "../store/weather/useActions";
+import Navigation from "./navigation/Navigation";
+import {makeStyles} from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
+const useStyles = makeStyles(theme => ({
+    root: {
+        flexGrow: 1,
+    },
+}));
 
 const App = () => {
+    const classes = useStyles();
     const [isLoading, setIsLoading] = useState('false');
     const weather = useSelector(state => state.weather);
     const {fetchAlerts} = useActions();
@@ -21,10 +31,13 @@ const App = () => {
     }
 
     return (
-        <WeatherProvider value={weather}>
-            <h1>App</h1>
-            <Route exact path='/' component={WeatherContainer}/>
-        </WeatherProvider>
+        <div className={classes.root}>
+            <CssBaseline/>
+            <WeatherProvider value={weather}>
+                <Navigation/>
+                <Route exact path='/' component={WeatherContainer}/>
+            </WeatherProvider>
+        </div>
     )
 };
 

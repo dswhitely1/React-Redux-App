@@ -1,5 +1,6 @@
 import React from 'react';
+import WeatherSideBar from "./WeatherSideBar";
 
-const WeatherContainer = () => <h1>Weather Container</h1>;
+const WeatherContainer = () => <WeatherSideBar/>
 
 export default WeatherContainer
